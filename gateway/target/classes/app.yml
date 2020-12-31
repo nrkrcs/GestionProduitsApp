@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+      routes:
+        - id: r1
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path= /customers/**
+        - id: r2
+          uri : lb://PRODUCT-SERVICE
+          predicates:
+            - Path= /products/**
+
